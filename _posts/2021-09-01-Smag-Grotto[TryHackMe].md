@@ -1,5 +1,5 @@
 ---
-title: Smag-Grotto[TryHackMe]
+title: Smag Grotto - TryHackMe
 author: Vishnu Sudhakaran
 date: 2021-09-01 22:30:00 +0800
 categories: [TryHackMe]
