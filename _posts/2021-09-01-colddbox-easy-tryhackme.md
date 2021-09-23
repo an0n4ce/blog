@@ -2,7 +2,7 @@
 title: ColddBox:Easy - TryHackMe
 author: Vishnu Sudhakaran
 date: 2021-09-01 23:30:00 +0530
-categories: [TryHackMe]
+categories: [Boot2Root, TryHackMe]
 tags: [ security, box, wordpress, privesc, linux, gtfobin ]
 ---
 
