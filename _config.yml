@@ -34,9 +34,6 @@ github:
 twitter:
   username: an0n4ce            # change to your twitter username
 
-linkedin:
-  username: an0n4ce            # change to your linkedin username
-
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
@@ -48,7 +45,7 @@ social:
     - https://github.com/an0n4ce       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/an0n4ce
-    - https://www.linkedin.com/in/an0n4ce
+    # - https://www.linkedin.com/in/an0n4ce
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
