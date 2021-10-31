@@ -322,7 +322,10 @@ Now connect it with `adb`, if you don't have `adb` tool then install it accordin
 * daemon not running; starting now at tcp:5037
 * daemon started successfully
 connected to 127.0.0.1:5555
+```
 
+For getting adb shell use this command:
+```bash
 ➜  adb -s 127.0.0.1:5555 shell
 x86_64:/ $ whoami                                                                                      
 shell
