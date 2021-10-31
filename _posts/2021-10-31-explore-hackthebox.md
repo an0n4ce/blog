@@ -1,7 +1,7 @@
 ---
 title: Explore - HackTheBox
 author: Vishnu Sudhakaran
-date: 2021-10-31 10:00:00 +0530
+date: 2021-10-31 12:40:00 +0530
 categories: [Boot2Root, HackTheBox]
 tags: [ android, network, adb, exploit-db, cve ]
 ---
