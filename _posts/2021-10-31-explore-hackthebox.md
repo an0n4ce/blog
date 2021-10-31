@@ -306,7 +306,7 @@ LISTEN      0      4            *:5555                     *:*
 
 ```
 
-Port 5555 is an Android Debug Bridge (adb)(https://developer.android.com/studio/command-line/adb). Let's connect it through port-forwarding with `ssh` to our localhost.
+Port 5555 is an Android Debug Bridge [adb](https://developer.android.com/studio/command-line/adb). Let's connect it through port-forwarding with `ssh` to our localhost.
 ```bash
 ➜  ssh -L 5555:localhost:5555 kristi@10.10.10.247 -p 2222
 Password authentication
