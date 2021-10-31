@@ -197,7 +197,7 @@ ftpPort : 3721
 
 ```
 
-When we use `listPics` command, there is an interesting file that is `creds.jpg` that contanins plain username and password.
+When we use `listPics` command, there is an interesting file that is `creds.jpg` that contains plain username and password.
 ```bash
 ➜  python3 exploit.py listPics 10.10.10.247
 
