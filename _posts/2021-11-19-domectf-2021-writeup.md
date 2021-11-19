@@ -16,7 +16,7 @@ We Secured 7th Position At **DomeCTF** as Part of **c0c0n 2021 Conference**, Con
 
 ![](/assets/img/posts/domectf/bra/Brazil.png)
 
-Challenge: [quick_703471b249918e8fc14f95ba119bb7af.zip](/assets/img/posts/domectf/bra/quick_703471b249918e8fc14f95ba119bb7af.zip)
+Challenge: [quick_703471b249918e8fc14f95ba119bb7af.zip](https://play.domectf.in/data/attachment.php?id=13)
 
 We can see here 5 QR Codes after extracting the given file. Use any online [QRreader](https://qrscanneronline.com/) to get your flag parts.
 
