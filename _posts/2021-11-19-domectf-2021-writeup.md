@@ -264,7 +264,7 @@ In the webpage we see some `User-Agent` information.
 
 ![](/assets/img/posts/domectf/mex/1.png)
 
-The challenge is something about `User-Agent`, what is the interesting part here we can see at bottom `Powered by : Yandex`, So i choose `Yandex Browser` as a User-Agent with `User-Agnet Switcher` extention, Just refresh the page you will get your flag at bottom.
+The challenge is something about `User-Agent`, what is the interesting part here we can see at bottom `Powered by : Yandex`, So i choose `Yandex Browser` as a User-Agent with `User-Agent Switcher` extention, Just refresh the page you will get your flag at bottom.
 
 ![](/assets/img/posts/domectf/mex/2.png)
 
