@@ -1,7 +1,7 @@
 ---
 title: DomeCTF 2021
 author: Vishnu Sudhakaran
-date: 2021-11-19 23:00:00 +0530
+date: 2021-11-19 22:57:00 +0530
 categories: [CTF-WriteUps]
 tags: [ ctf ]
 ---
