@@ -26,7 +26,7 @@ description: >-                        # used by seo meta and the atom feed
   Cyber Security Blogs / CTF Writeups
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://an0n4ce.github.io'
+url: ''
 
 github:
   username: an0n4ce             # change to your github username
