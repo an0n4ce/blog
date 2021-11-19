@@ -135,7 +135,7 @@ ___
 
 ![](/assets/img/posts/domectf/mada/mada.png)
 
-Challenge : [cute_beagle_372a2935c95c17d8a21bf87a5244dc6f.zip](/assets/img/posts/domectf/mada/cute_beagle_372a2935c95c17d8a21bf87a5244dc6f.zip)
+Challenge : [cute_beagle_372a2935c95c17d8a21bf87a5244dc6f.zip](https://play.domectf.in/data/attachment.php?id=4)
 
 In the given file, there is an `secret.txt` that contains cipher text encrypted with `RSA` algorithm, and a picture of a Cute Beagle.
 
