@@ -9,7 +9,7 @@ published: false
 
 ![](/assets/img/posts/mns/1.png)
 
-An Awes0me Beginner friendly CTF challenge created by my friend [MANASRAMESH4](https://twitter.com/MANASRAMESH4), Let's exploit the machine.
+An Awes0me Beginner friendly CTF challenge created by my friend [Manas Ramesh](https://twitter.com/MANASRAMESH4), Let's exploit the machine.
 
 Room : [https://tryhackme.com/room/mnsctf1initcrew](https://tryhackme.com/room/mnsctf1initcrew)
 
