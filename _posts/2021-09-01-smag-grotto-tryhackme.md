@@ -4,6 +4,7 @@ author: Vishnu Sudhakaran
 date: 2021-09-01 22:30:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, wireshark, privesc, linux, gtfobin ]
+published: false
 ---
 
 ![](/assets/img/posts/smag/1.png)
