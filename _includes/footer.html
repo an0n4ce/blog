@@ -20,14 +20,14 @@
         {% capture _platform %}
           <a href="https://an0n4ce.github.io" target="_blank" rel="noopener">an0n4ce</a>
         {% endcapture %}
-
+<!--
         {% capture _theme %}
           <a href="https://an0n4ce.github.io" target="_blank" rel="noopener">H4ck th3 Plane7</a>
         {% endcapture %}
-
+-->
         {{ site.data.locales[lang].meta
-          | default: 'Powered by :PLATFORM | _theme'
-          | replace: ':PLATFORM', _platform | replace: ':THEME', _theme
+          | default: 'Powered by :PLATFORM' <!-- with :THEME theme.' -->
+          | replace: ':PLATFORM', _platform <!--| replace: ':THEME', _theme -->
         }}
 
       </p>
