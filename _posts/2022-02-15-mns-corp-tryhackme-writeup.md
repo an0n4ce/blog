@@ -4,7 +4,6 @@ author: Vishnu Sudhakaran
 date: 2022-02-15 21:00:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, rce, privesc, linux, gtfobin ]
-published: false
 ---
 
 ![](/assets/img/posts/mns/1.png)
