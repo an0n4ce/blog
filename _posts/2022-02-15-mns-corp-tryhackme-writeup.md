@@ -1,7 +1,7 @@
 ---
 title: MNS CORP - TryHackMe
 author: Vishnu Sudhakaran
-date: 2022-02-15 21:00:00 +0530
+date: 2023-02-15 21:00:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, rce, privesc, linux, gtfobin ]
 ---
@@ -20,7 +20,7 @@ We can start with `nmap` scan.
 
 ```bash
 ➜ nmap -sC -sV 10.10.209.251 --min-rate 1000                               
-Starting Nmap 7.92 ( https://nmap.org ) at 2022-02-13 21:41 IST
+Starting Nmap 7.92 ( https://nmap.org ) at 2023-02-13 21:41 IST
 Nmap scan report for 10.10.209.251
 Host is up (0.40s latency).
 Not shown: 996 closed tcp ports (conn-refused)
@@ -86,7 +86,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 [+] Extensions:              php,js
 [+] Timeout:                 10s
 ===============================================================
-2022/02/13 22:19:51 Starting gobuster in directory enumeration mode
+2023/02/13 22:19:51 Starting gobuster in directory enumeration mode
 ===============================================================
 /.hta.php             (Status: 403) [Size: 278]
 /.hta                 (Status: 403) [Size: 278]
@@ -104,7 +104,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 /server-status        (Status: 403) [Size: 278]                                   
                                                                                   
 ===============================================================
-2022/02/13 22:29:48 Finished
+2023/02/13 22:29:48 Finished
 ===============================================================
 ```
 
