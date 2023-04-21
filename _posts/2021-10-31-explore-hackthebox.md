@@ -1,7 +1,7 @@
 ---
 title: Explore - HackTheBox
 author: Vishnu Sudhakaran
-date: 2021-10-31 12:40:00 +0530
+date: 2022-10-31 12:40:00 +0530
 categories: [Boot2Root, HackTheBox]
 tags: [ android, network, adb, exploit-db, cve ]
 ---
@@ -26,7 +26,7 @@ In this blog we are going to discuss about pwning explore from hackthebox. It is
 Let's start with `nmap` all ports scan
 ```bash
 ➜  nmap -p- 10.10.10.247 -oA explore-allports 
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-10-31 11:08 IST
+Starting Nmap 7.91 ( https://nmap.org ) at 2022-10-31 11:08 IST
 Nmap scan report for 10.10.10.247
 Host is up (0.055s latency).
 Not shown: 65530 closed ports
@@ -44,7 +44,7 @@ Nmap done: 1 IP address (1 host up) scanned in 33.16 seconds
 We got some ports open, lets get more information using `-sC (script scan)` and `-sV (service version)` switch.
 ```bash
 ➜  nmap -sC -sV -p 2222,5555,33035,42135,59777 --min-rate 10000 10.10.10.247 -oN explore-nmap
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-10-31 11:17 IST
+Starting Nmap 7.91 ( https://nmap.org ) at 2022-10-31 11:17 IST
 Nmap scan report for 10.10.10.247
 Host is up (0.053s latency).
 
@@ -60,39 +60,39 @@ PORT      STATE    SERVICE VERSION
 | fingerprint-strings: 
 |   GenericLines: 
 |     HTTP/1.0 400 Bad Request
-|     Date: Sun, 31 Oct 2021 05:47:24 GMT
+|     Date: Sun, 31 Oct 2022 05:47:24 GMT
 |     Content-Length: 22
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
 |     Invalid request line:
 |   GetRequest: 
 |     HTTP/1.1 412 Precondition Failed
-|     Date: Sun, 31 Oct 2021 05:47:24 GMT
+|     Date: Sun, 31 Oct 2022 05:47:24 GMT
 |     Content-Length: 0
 |   HTTPOptions: 
 |     HTTP/1.0 501 Not Implemented
-|     Date: Sun, 31 Oct 2021 05:47:29 GMT
+|     Date: Sun, 31 Oct 2022 05:47:29 GMT
 |     Content-Length: 29
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
 |     Method not supported: OPTIONS
 |   Help: 
 |     HTTP/1.0 400 Bad Request
-|     Date: Sun, 31 Oct 2021 05:47:45 GMT
+|     Date: Sun, 31 Oct 2022 05:47:45 GMT
 |     Content-Length: 26
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
 |     Invalid request line: HELP
 |   RTSPRequest: 
 |     HTTP/1.0 400 Bad Request
-|     Date: Sun, 31 Oct 2021 05:47:29 GMT
+|     Date: Sun, 31 Oct 2022 05:47:29 GMT
 |     Content-Length: 39
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
 |     valid protocol version: RTSP/1.0
 |   SSLSessionReq: 
 |     HTTP/1.0 400 Bad Request
-|     Date: Sun, 31 Oct 2021 05:47:45 GMT
+|     Date: Sun, 31 Oct 2022 05:47:45 GMT
 |     Content-Length: 73
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
@@ -101,7 +101,7 @@ PORT      STATE    SERVICE VERSION
 |     ??{????w????<=?o?
 |   TLSSessionReq: 
 |     HTTP/1.0 400 Bad Request
-|     Date: Sun, 31 Oct 2021 05:47:45 GMT
+|     Date: Sun, 31 Oct 2022 05:47:45 GMT
 |     Content-Length: 71
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
@@ -109,7 +109,7 @@ PORT      STATE    SERVICE VERSION
 |     ??random1random2random3random4
 |   TerminalServerCookie: 
 |     HTTP/1.0 400 Bad Request
-|     Date: Sun, 31 Oct 2021 05:47:45 GMT
+|     Date: Sun, 31 Oct 2022 05:47:45 GMT
 |     Content-Length: 54
 |     Content-Type: text/plain; charset=US-ASCII
 |     Connection: Close
