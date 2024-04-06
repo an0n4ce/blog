@@ -62,7 +62,6 @@ Service Info: OSs: Linux, Unix; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
-
 ```
 
 There is a webserver running on port 80, let's have a look.
