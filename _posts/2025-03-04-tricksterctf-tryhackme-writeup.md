@@ -176,7 +176,7 @@ $
 
 The output shows that the user `www-data` has permission to run the following commands on the machine. And the entry `(john) NOPASSWD: /bin/vim` indicates that `www-data` can execute the `vim` text editor as the user john without requiring a password, providing a potential privilege escalation.
 
-Here we can exploit the `vim` binary to escalate privileges and gain access as the `john` user, as outlined in [GTFOBins]((https://gtfobins.github.io/gtfobins/vim/))
+Here we can exploit the `vim` binary to escalate privileges and gain access as the `john` user, as outlined in [GTFOBins](https://gtfobins.github.io/gtfobins/vim/).
 
 ```bash
 $ sudo -l
