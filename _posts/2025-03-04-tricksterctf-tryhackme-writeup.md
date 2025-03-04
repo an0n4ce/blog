@@ -1,7 +1,7 @@
 ---
 title: TricksterCTF - TryHackMe
 author: Vishnu Sudhakaran
-date: 2025-03-04 11:11:00 +0530
+date: 2025-03-04 11:00:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, rce, privesc, linux, gtfobin ]
 ---
