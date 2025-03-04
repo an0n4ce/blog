@@ -1,8 +1,7 @@
 ---
-published: false
 title: TricksterCTF - TryHackMe
 author: Vishnu Sudhakaran
-date: 2025-03-04 21:00:00 +0530
+date: 2025-03-04 14:00:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, rce, privesc, linux, gtfobin ]
 ---
@@ -10,6 +9,8 @@ tags: [ easy, rce, privesc, linux, gtfobin ]
 ![](/assets/img/posts/mns/28.png)
 
 An awesome beginner-friendly CTF challenge to test your enumeration skills. Let's exploit the [machine](https://tryhackme.com/jr/tricksterctf).
+
+You can also set up this machine locally on a Virtual Machine. Please find the [download link](https://drive.google.com/file/d/1I2eeCcY3C6jEtwNaBjLOMQk-jG8UqXmV/view?usp=drive_link).
 
 ## Reconnaissance:
 
@@ -76,45 +77,51 @@ There is a webserver running on port 80, let's have a look.
 
 ![](/assets/img/posts/mns/20.png)
 
-It's just a nicely themed dummy web page. While crawling through the webpage `gobuster` reveals an interesting `/compliants.php` file.
+It's just a nicely themed dummy web page. While crawling through the webpage `ffuf` reveals an interesting `/compliants.php` file.
 
 ```bash
-➜ gobuster dir -u http://192.168.20.15/ -w /usr/share/wordlists/dirb/common.txt -x php,js
-===============================================================
-Gobuster v3.6
-by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
-===============================================================
-[+] Url:                     http://192.168.20.15/
-[+] Method:                  GET
-[+] Threads:                 10
-[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
-[+] Negative Status codes:   404
-[+] User Agent:              gobuster/3.6
-[+] Extensions:              php,js
-[+] Timeout:                 10s
-===============================================================
-Starting gobuster in directory enumeration mode
-===============================================================
-/.php                 (Status: 403) [Size: 278]
-/.hta                 (Status: 403) [Size: 278]
-/.hta.js              (Status: 403) [Size: 278]
-/.hta.php             (Status: 403) [Size: 278]
-/.htaccess            (Status: 403) [Size: 278]
-/.htaccess.js         (Status: 403) [Size: 278]
-/.htaccess.php        (Status: 403) [Size: 278]
-/.htpasswd            (Status: 403) [Size: 278]
-/.htpasswd.js         (Status: 403) [Size: 278]
-/.htpasswd.php        (Status: 403) [Size: 278]
-/assets               (Status: 301) [Size: 315] [--> http://192.168.20.15/assets/]
-/cat.php              (Status: 200) [Size: 92]
-/complaints.php       (Status: 200) [Size: 1017]
-/index.html           (Status: 200) [Size: 37811]
-/mailer.php           (Status: 403) [Size: 59]
-/server-status        (Status: 403) [Size: 278]
-Progress: 13842 / 13845 (99.98%)
-===============================================================
-Finished
-===============================================================
+➜ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.20.15/FUZZ -e .php,.html
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://192.168.20.13/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/wordlists/dirb/common.txt
+ :: Extensions       : .php .html 
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+.php                    [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 3ms]
+.hta.html               [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 6ms]
+.htpasswd.php           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 6ms]
+.html                   [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 7ms]
+.htpasswd               [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 10ms]
+                        [Status: 200, Size: 37811, Words: 3829, Lines: 946, Duration: 6ms]
+assets                  [Status: 301, Size: 315, Words: 20, Lines: 10, Duration: 3ms]
+.htaccess.html          [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 448ms]
+.htaccess.php           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 451ms]
+.htaccess               [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 453ms]
+.hta                    [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 461ms]
+.htpasswd.html          [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 466ms]
+.hta.php                [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 468ms]
+complaints.php          [Status: 200, Size: 1017, Words: 91, Lines: 41, Duration: 3ms]
+index.html              [Status: 200, Size: 37811, Words: 3829, Lines: 946, Duration: 3ms]
+index.html              [Status: 200, Size: 37811, Words: 3829, Lines: 946, Duration: 7ms]
+mailer.php              [Status: 403, Size: 59, Words: 10, Lines: 1, Duration: 3ms]
+server-status           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 4ms]
+:: Progress: [13842/13842] :: Job [1/1] :: 112 req/sec :: Duration: [0:00:04] :: Errors: 0 ::
 ```
 
 ![](/assets/img/posts/mns/21.png)
