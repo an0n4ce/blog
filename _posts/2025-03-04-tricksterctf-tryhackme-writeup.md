@@ -1,4 +1,5 @@
 ---
+published: false
 title: TricksterCTF - TryHackMe
 author: Vishnu Sudhakaran
 date: 2025-03-04 21:00:00 +0530
