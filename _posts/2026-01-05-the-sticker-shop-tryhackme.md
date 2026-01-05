@@ -55,8 +55,8 @@ The web application running on port 8080 was a "Cat Sticker Shop" - cute, but po
 
 We have a `flag.txt` file at `http://10.49.170.47:8080/flag.txt`. However, accessing it directly returned a **401 Unauthorized** error. This told me two things:
 
-- The flag exists on the server.
-- I need to find another way to access it.
+- The flag exists on the server. And I need to find another way to access it.
+
 
 ## Discovering the Vulnerability
 
