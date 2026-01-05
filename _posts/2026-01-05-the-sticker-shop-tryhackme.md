@@ -1,7 +1,7 @@
 ---
 title: The Sticker Shop - TryHackMe
 author: Vishnu Sudhakaran
-date: 2026-01-05 10:11:00 +0530
+date: 2026-01-05 22:11:00 +0530
 categories: [Boot2Root, TryHackMe]
 tags: [ easy, web, xss ]
 ---
@@ -57,6 +57,7 @@ We have a `flag.txt` file at `http://10.49.170.47:8080/flag.txt`. However, ac
 
 - The flag exists on the server.
 - I need to find another way to access it.
+
 ## Discovering the Vulnerability
 
 The application had a feedback page at `/submit_feedback`. My first thought was: "Could this be vulnerable to Cross-Site Scripting (XSS)?"
